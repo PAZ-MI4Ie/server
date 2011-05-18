@@ -3,6 +3,16 @@ var Client = require('mysql').Client,
     net = require('net'),
     SESSION_TIMEOUT = 10000;
 
+function randomString(length) {
+	var characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+	var result = '';
+    for (var i = 0; i < length; ++i) {
+        var randomPosition = Math.floor(Math.random() * characters.length);
+		result += characters.substring(randomPosition, randomPosition + 1);
+	}
+	return result;
+}
+	
 (function() {
     client.host = 'localhost';
     client.user = 'MI4Ie';
