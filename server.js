@@ -80,6 +80,5 @@ function randomString(length) {
                 console.log(row.fapbaarheid);
             })(results[i]);
         }
-        client.end();
     }
 );*/
