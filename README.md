@@ -1,5 +1,7 @@
-=API DOCS=
-==How it works==
+API DOCS
+========
+How it works
+------------
 Basically you send the request in the format "<function> <parameter> <parameter> ..." directly to the server.
 This will return like this:
 
@@ -10,7 +12,8 @@ This will return like this:
 
 the GO tells you that everything has been sent.
 
-==Technical==
+Technical
+---------
 function: login
 description: Gives you an access token for the functions that require one
 parameters: username<string>, password<string>
