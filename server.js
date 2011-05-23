@@ -69,8 +69,8 @@ function mysql_real_escape_string(val) {
                         delete accessTokens[accessToken];
                     }, SESSION_TIMEOUT);
                     
-                    socket.write(accesToken + '\n');
-                    socket.write('GO');
+                    socket.write(accessToken + '\n');
+                    socket.destroy();
                 }
             } else if (params[0] == 'addPair') {
                 var pairdata = JSON.parse(data.trim().substring(8));
@@ -88,7 +88,7 @@ function mysql_real_escape_string(val) {
                                     'SELECT LAST_INSERT_ID() AS pair_id',
                                     function(err, results, fields) {
                                         socket.write(results[0].pair_id + '\n');
-                                        socket.write('GO');
+                                        socket.destroy();
                                     });
                                 }
                             );

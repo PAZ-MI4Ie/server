@@ -8,9 +8,8 @@ This will return like this:
 	<returnvalue>
 	<returnvalue>
 	...
-	GO
 
-the GO tells you that everything has been sent.
+the socket closes when everything is sent
 
 Technical
 ---------
