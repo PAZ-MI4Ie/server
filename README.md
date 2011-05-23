@@ -2,7 +2,7 @@ API DOCS
 ========
 How it works
 ------------
-Basically you send the request in the format "<function> <parameter> <parameter> ..." directly to the server.
+Basically you send the request in the format "<function> <parameter> <parameter> ..." directly to the server(ALWAYS ON 1 LINE).
 This will return like this:
 
 	<returnvalue>
