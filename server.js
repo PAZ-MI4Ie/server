@@ -12,6 +12,34 @@ function randomString(length) {
     }
     return result;
 }
+
+function mysql_real_escape_string(val) {
+    if (val === undefined || val === null) {
+        return 'NULL';
+    }
+
+    switch (typeof val) {
+        case 'boolean': return (val) ? 'true' : 'false';
+        case 'number': return val+'';
+    }
+
+    if (typeof val === 'object') {
+        val = val.toString();
+    }
+
+    val = val.replace(/[\0\n\r\b\t\\\'\"\x1a]/g, function(s) {
+        switch(s) {
+            case "\0": return "\\0";
+            case "\n": return "\\n";
+            case "\r": return "\\r";
+            case "\b": return "\\b";
+            case "\t": return "\\t";
+            case "\x1a": return "\\Z";
+            default: return "\\"+s;
+        }
+    });
+    return val;
+};
     
 (function() {
     client.host = 'localhost';
@@ -59,7 +87,7 @@ function randomString(length) {
                                     client.query(
                                     'SELECT LAST_INSERT_ID() AS pair_id',
                                     function(err, results, fields) {
-                                        socket.write(results[0].pair_id);
+                                        socket.write(results[0].pair_id + '\n');
                                         socket.write('GO');
                                     });
                                 }
@@ -78,7 +106,7 @@ function insertStudent(user, callBack) {
         "INSERT INTO user\n"+
         "(username, firstname, surname, email, user_type)\n"+
         "VALUES\n"+
-        "('"+user.username+"', '"+user.firstname+"', '"+user.surname+"', '"+user.email+"', 'student')",
+        "('"+mysql_real_escape_string(user.username)+"', '"+mysql_real_escape_string(user.firstname)+"', '"+mysql_real_escape_string(user.surname)+"', '"+mysql_real_escape_string(user.email)+"', 'student')",
         function (err, results, fields) {
             client.query(
                 "INSERT INTO student\n"+
