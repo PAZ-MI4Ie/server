@@ -1,4 +1,4 @@
-=(basic) API DOCS=
+=API DOCS=
 ==How it works==
 Basically you send the request in the format "<function> <parameter> <parameter> ..." directly to the server.
 This will return like this:
